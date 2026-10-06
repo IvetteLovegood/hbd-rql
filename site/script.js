@@ -1,9 +1,38 @@
 // Cambia aquí los textos y la firma para personalizar el regalo.
 const letters = [
-  { title: 'Querida Raquel,', paragraphs: ['Hoy me encantaría estar ahí, tocar tu puerta y darte uno de esos abrazos que dicen mucho sin decir nada. Pero como esta vez nos toca celebrar a la distancia, te hice un pequeño lugar donde dejarte mis palabras.', 'Este libro no tiene muchas páginas, pero sí un montón de cariño. Y todas son para ti.'] },
-  { title: 'Qué suerte coincidir contigo.', paragraphs: ['Hay personas que hacen los días más ligeros, las risas más largas y los recuerdos más bonitos. Tú eres una de ellas.', 'Gracias por las conversaciones que se alargan sin darnos cuenta, por escucharme y por ser tú, con todo lo que te hace tan especial.', 'Aunque no nos veamos tanto como quisiera, me encanta saber que nuestra amistad sigue aquí, cerquita.'] },
-  { title: 'Un deseo para tu nueva vuelta al sol.', paragraphs: ['Que este año te traiga momentos que quieras guardar para siempre. Que encuentres motivos para reír incluso en los días raros, y que nunca te falten personas que te quieran bonito.', 'Ojalá te atrevas a eso que tienes pendiente, te sorprendas con lugares nuevos y te acuerdes de celebrar también las pequeñas cosas.', 'Te mereces un año lleno de calma, aventuras y mucho amor.'] },
-  { title: 'Feliz cumpleaños, Raquel.', paragraphs: ['Hasta que podamos vernos, imagina que al cerrar este libro te llevas un abrazo enorme de mi parte.', 'Tenemos una celebración pendiente, muchas cosas que contarnos y más recuerdos por hacer.', 'Disfruta muchísimo tu día. Qué bonito que existas.'], signature: 'Con todo mi cariño,<br>Tu amiga ♡' }
+  {
+    "title": "Holaaaaaaaa,",
+    "paragraphs": [
+      "Gracias al tonto on call esta vez nos toca celebrar a la distancia, te hice un pequeño lugar donde dejarte mis palabras.",
+      "Este libro no tiene muchas páginas, pero sí un montón de cariño. Y todas son para ti."
+    ]
+  },
+  {
+    "title": "Qué suerte coincidir contigo,",
+    "paragraphs": [
+      "desde que te obligue a sentarte conmigo y ser amiga sabía que son de esos momentos de los que no te arrepientes.",
+      "Hay personas que hacen los días más ligeros, las risas más largas y los recuerdos más bonitos. Tú eres una de ellas.",
+      "Gracias por las conversaciones que se alargan sin darnos cuenta, por escucharme, por odiar a los hombres conmigo y por ser tú, con todo lo que te hace tan especial, aunque a veces nos desaparecemos pero es lo normal en la amistad.",
+      "Aunque no nos veamos tanto como quisiera, me encanta saber que nuestra amistad sigue aquí, cerquita."
+    ]
+  },
+  {
+    "title": "",
+    "paragraphs": [
+      "Que este año te traiga momentos que quieras guardar para siempre. Que encuentres motivos para reír incluso en los días raros, y que nunca te falten personas que te quieran bonito (somos muchas).",
+      "Ojalá te atrevas a eso que tienes pendiente, te sorprendas con lugares nuevos y te acuerdes de celebrar también las pequeñas cosas y recuerdes que tienes muchas personas dispuestas a ayudarte con todo.",
+      "Te mereces un año lleno de calma, aventuras y mucho amor."
+    ]
+  },
+  {
+    "title": "Feliz cumpleaños, Raquel",
+    "paragraphs": [
+      "Tenemos una celebración pendiente, un regalito que darte y muchas cosas que contarnos y más recuerdos por hacer",
+      "Disfruta muchísimo tu día. Qué bonito que existas."
+    ],
+    "signature": "Ivette♡",
+    "postscript": "¿Así esta bien o quieres una versiónn más amigable? AHHH VERDAD. No no la hice con ChatGPT la escribi yo solita."
+  }
 ];
 // Fotos del álbum, antes de la última página de la carta.
 const memories = [
@@ -32,7 +61,7 @@ function render() {
     if (letter.image) {
       page.innerHTML = `<span class="letter-kicker">RECUERDOS PARA GUARDAR</span><figure class="memory"><img src="${letter.image}" alt="${letter.alt}" width="900" height="1600"><figcaption>${letter.caption}</figcaption></figure><span class="page-number">${current}</span>`;
     } else {
-    page.innerHTML = `<span class="letter-kicker">PARA RAQUEL · CON CARIÑO</span><h2>${letter.title}</h2><div class="letter-text">${letter.paragraphs.map(p => `<p>${p}</p>`).join('')}</div>${letter.signature ? `<div class="signature">${letter.signature}</div>` : ''}<span class="page-number">${current}</span>`;
+    page.innerHTML = `<span class="letter-kicker">PARA RAQUEL · CON CARIÑO</span>${letter.title ? `<h2>${letter.title}</h2>` : ''}<div class="letter-text">${letter.paragraphs.map(p => `<p>${p}</p>`).join('')}</div>${letter.signature ? `<div class="signature">${letter.signature}</div>` : ''}${letter.postscript ? `<p class="postscript">${letter.postscript}</p>` : ''}<span class="page-number">${current}</span>`;
     }
   }
   previous.disabled = busy || current === 0;
