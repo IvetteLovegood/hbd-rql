@@ -5,9 +5,12 @@ const letters = [
   { title: 'Un deseo para tu nueva vuelta al sol.', paragraphs: ['Que este año te traiga momentos que quieras guardar para siempre. Que encuentres motivos para reír incluso en los días raros, y que nunca te falten personas que te quieran bonito.', 'Ojalá te atrevas a eso que tienes pendiente, te sorprendas con lugares nuevos y te acuerdes de celebrar también las pequeñas cosas.', 'Te mereces un año lleno de calma, aventuras y mucho amor.'] },
   { title: 'Feliz cumpleaños, Raquel.', paragraphs: ['Hasta que podamos vernos, imagina que al cerrar este libro te llevas un abrazo enorme de mi parte.', 'Tenemos una celebración pendiente, muchas cosas que contarnos y más recuerdos por hacer.', 'Disfruta muchísimo tu día. Qué bonito que existas.'], signature: 'Con todo mi cariño,<br>Tu amiga ♡' }
 ];
-// Añade aquí las fotos cuando sus archivos estén en site/photos/.
-// Ejemplo: { image: 'photos/recuerdo.jpg', alt: 'Un recuerdo juntas', caption: 'Más momentos así ♡' }
-const memories = [];
+// Fotos del álbum, antes de la última página de la carta.
+const memories = [
+  { image: 'photos/cumpleanos.jpg', alt: 'Raquel cortando un pastel de cumpleaños', caption: 'Por más cumpleaños para celebrar ♡' },
+  { image: 'photos/juntas.jpg', alt: 'Las dos juntas en una foto frente al espejo', caption: 'Qué suerte coincidir contigo.' },
+  { image: 'photos/selfie.jpg', alt: 'Una selfie de las dos juntas', caption: 'Y todos los recuerdos que nos faltan.' }
+];
 const bookPages = [...letters.slice(0, -1), ...memories, letters[letters.length - 1]];
 const page = document.querySelector('#page');
 const previous = document.querySelector('#previous');
