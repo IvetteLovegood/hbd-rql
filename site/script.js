@@ -117,6 +117,31 @@ function turn(direction) {
     }, reducedMotion ? 0 : 280);
   }, reducedMotion ? 0 : 220);
 }
+// Gestos horizontales sobre el libro, sin bloquear el desplazamiento vertical.
+const book = document.querySelector('#book');
+let gesture = null;
+let suppressClick = false;
+book.addEventListener('pointerdown', event => {
+  if (busy || !event.isPrimary || event.button !== 0 || event.target.closest('button, a')) return;
+  gesture = { id: event.pointerId, x: event.clientX, y: event.clientY };
+  book.setPointerCapture(event.pointerId);
+});
+book.addEventListener('pointerup', event => {
+  if (!gesture || gesture.id !== event.pointerId) return;
+  const dx = event.clientX - gesture.x;
+  const dy = event.clientY - gesture.y;
+  gesture = null;
+  if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+  suppressClick = true;
+  setTimeout(() => { suppressClick = false; }, 0);
+  turn(dx < 0 ? 1 : -1);
+});
+book.addEventListener('pointercancel', () => { gesture = null; });
+book.addEventListener('lostpointercapture', () => { gesture = null; });
+book.addEventListener('click', event => {
+  if (suppressClick) { event.preventDefault(); event.stopPropagation(); }
+}, true);
+book.addEventListener('dragstart', event => { event.preventDefault(); });
 previous.addEventListener('click', () => turn(-1));
 next.addEventListener('click', () => turn(1));
 soundButton.addEventListener('click', () => {
