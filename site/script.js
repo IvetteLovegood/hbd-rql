@@ -54,7 +54,7 @@ function render() {
   page.classList.toggle('cover', current === 0);
   page.classList.toggle('photo-page', Boolean(bookPages[current - 1]?.image));
   if (current === 0) {
-    page.innerHTML = `<span class="cover-kicker">UN PEQUEÑO LIBRO PARA</span>${flower}<h2>Raquel</h2><p class="dedication">en su cumpleaños</p><button class="open" type="button">Abrir tu carta <span aria-hidden="true">↗</span></button><p class="cover-bottom">CON CARIÑO · SIEMPRE CERCA</p>`;
+    page.innerHTML = `<span class="cover-kicker">UN PEQUEÑO LIBRO PARA</span>${flower}<h2>Raquel</h2><p class="dedication">en su cumpleaños</p><button class="open" type="button">Abrir</button><p class="cover-bottom">CON CARIÑO</p>`;
     page.querySelector('.open').addEventListener('click', () => turn(1));
   } else {
     const letter = bookPages[current - 1];
