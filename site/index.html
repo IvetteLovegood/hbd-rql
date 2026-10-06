@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffefef">
+  <meta name="description" content="Un pequeño libro y una carta de cumpleaños para Raquel.">
+  <title>Para Raquel · Un cumpleaños entre páginas</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="masthead"><a href="./" aria-label="Volver a la portada">R<span class="brand-star">✳︎</span></a><span>UN REGALO HECHO DE PALABRAS</span><button id="sound" type="button" aria-pressed="true">Sonido activado <span aria-hidden="true">♫</span></button></header>
+  <main>
+    <div class="intro"><span class="eyebrow">PARA TI, EN TU DÍA</span><h1>Hay abrazos que<br>viajan entre páginas.</h1><p>Hoy, este pequeño libro lleva uno hasta ti.</p></div>
+    <section class="book-area" aria-label="Carta de cumpleaños">
+      <div class="book" id="book"><div class="page" id="page"></div></div>
+      <div class="book-controls"><button id="previous" aria-label="Página anterior" type="button">←</button><span id="position" aria-live="polite"></span><button id="next" aria-label="Página siguiente" type="button">→</button></div>
+      <p class="hint" id="hint">Abre el libro. Hay algo bonito esperando.</p>
+    </section>
+  </main>
+  <footer>Con cariño, incluso a kilómetros de distancia.<span aria-hidden="true">♡</span></footer>
+</body>
+</html>
