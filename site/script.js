@@ -66,7 +66,7 @@ function render() {
     if (letter.image) {
       page.innerHTML = `<span class="letter-kicker">RECUERDOS PARA GUARDAR</span><figure class="memory"><img src="${letter.image}" alt="${letter.alt}" width="900" height="1600"><figcaption>${letter.caption}</figcaption></figure><span class="page-number">${current}</span>`;
     } else {
-    page.innerHTML = `<span class="letter-kicker">PARA RAQUEL · CON CARIÑO</span>${letter.title ? `<h2>${letter.title}</h2>` : ''}<div class="letter-text">${letter.paragraphs.map(p => `<p>${p}</p>`).join('')}</div>${letter.signature ? `<div class="signature">${letter.signature}</div>` : ''}${letter.postscript ? `<p class="postscript">${letter.postscript}</p>` : ''}<span class="page-number">${current}</span>`;
+    page.innerHTML = `<span class="letter-kicker">PARA RAQUEL</span>${letter.title ? `<h2>${letter.title}</h2>` : ''}<div class="letter-text">${letter.paragraphs.map(p => `<p>${p}</p>`).join('')}</div>${letter.signature ? `<div class="signature">${letter.signature}</div>` : ''}${letter.postscript ? `<p class="postscript">${letter.postscript}</p>` : ''}<span class="page-number">${current}</span>`;
     }
   }
   previous.disabled = busy || current === 0;
