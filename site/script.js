@@ -11,7 +11,12 @@ const letters = [
     "title": "Qué suerte coincidir contigo,",
     "paragraphs": [
       "desde que te obligue a sentarte conmigo y ser amiga sabía que son de esos momentos de los que no te arrepientes.",
-      "Hay personas que hacen los días más ligeros, las risas más largas y los recuerdos más bonitos. Tú eres una de ellas.",
+      "Hay personas que hacen los días más ligeros, las risas más largas y los recuerdos más bonitos. Tú eres una de ellas."
+    ]
+  },
+  {
+    "title": "",
+    "paragraphs": [
       "Gracias por las conversaciones que se alargan sin darnos cuenta, por escucharme, por odiar a los hombres conmigo y por ser tú, con todo lo que te hace tan especial, aunque a veces nos desaparecemos pero es lo normal en la amistad.",
       "Aunque no nos veamos tanto como quisiera, me encanta saber que nuestra amistad sigue aquí, cerquita."
     ]
