@@ -5,6 +5,10 @@ const letters = [
   { title: 'Un deseo para tu nueva vuelta al sol.', paragraphs: ['Que este año te traiga momentos que quieras guardar para siempre. Que encuentres motivos para reír incluso en los días raros, y que nunca te falten personas que te quieran bonito.', 'Ojalá te atrevas a eso que tienes pendiente, te sorprendas con lugares nuevos y te acuerdes de celebrar también las pequeñas cosas.', 'Te mereces un año lleno de calma, aventuras y mucho amor.'] },
   { title: 'Feliz cumpleaños, Raquel.', paragraphs: ['Hasta que podamos vernos, imagina que al cerrar este libro te llevas un abrazo enorme de mi parte.', 'Tenemos una celebración pendiente, muchas cosas que contarnos y más recuerdos por hacer.', 'Disfruta muchísimo tu día. Qué bonito que existas.'], signature: 'Con todo mi cariño,<br>Tu amiga ♡' }
 ];
+// Añade aquí las fotos cuando sus archivos estén en site/photos/.
+// Ejemplo: { image: 'photos/recuerdo.jpg', alt: 'Un recuerdo juntas', caption: 'Más momentos así ♡' }
+const memories = [];
+const bookPages = [...letters.slice(0, -1), ...memories, letters[letters.length - 1]];
 const page = document.querySelector('#page');
 const previous = document.querySelector('#previous');
 const next = document.querySelector('#next');
@@ -16,17 +20,22 @@ let audioContext;
 const flower = `<svg class="flower" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M60 97V58M60 80C40 80 35 69 35 69c16-2 25 5 25 11ZM60 88c19-1 26-14 26-14-16-1-26 6-26 14Z"/><g transform="translate(60 40)"><ellipse ry="18" rx="7" cy="-15"/><ellipse ry="18" rx="7" cy="-15" transform="rotate(60)"/><ellipse ry="18" rx="7" cy="-15" transform="rotate(120)"/><ellipse ry="18" rx="7" cy="-15" transform="rotate(180)"/><ellipse ry="18" rx="7" cy="-15" transform="rotate(240)"/><ellipse ry="18" rx="7" cy="-15" transform="rotate(300)"/><circle r="7" fill="#ced37f"/></g><path d="M45 103h30"/></svg>`;
 function render() {
   page.classList.toggle('cover', current === 0);
+  page.classList.toggle('photo-page', Boolean(bookPages[current - 1]?.image));
   if (current === 0) {
     page.innerHTML = `<span class="cover-kicker">UN PEQUEÑO LIBRO PARA</span>${flower}<h2>Raquel</h2><p class="dedication">en su cumpleaños</p><button class="open" type="button">Abrir tu carta <span aria-hidden="true">↗</span></button><p class="cover-bottom">CON CARIÑO · SIEMPRE CERCA</p>`;
     page.querySelector('.open').addEventListener('click', () => turn(1));
   } else {
-    const letter = letters[current - 1];
+    const letter = bookPages[current - 1];
+    if (letter.image) {
+      page.innerHTML = `<span class="letter-kicker">RECUERDOS PARA GUARDAR</span><figure class="memory"><img src="${letter.image}" alt="${letter.alt}" width="900" height="1600"><figcaption>${letter.caption}</figcaption></figure><span class="page-number">${current}</span>`;
+    } else {
     page.innerHTML = `<span class="letter-kicker">PARA RAQUEL · CON CARIÑO</span><h2>${letter.title}</h2><div class="letter-text">${letter.paragraphs.map(p => `<p>${p}</p>`).join('')}</div>${letter.signature ? `<div class="signature">${letter.signature}</div>` : ''}<span class="page-number">${current}</span>`;
+    }
   }
   previous.disabled = busy || current === 0;
-  next.disabled = busy || current === letters.length;
-  document.querySelector('#position').textContent = current === 0 ? 'LA PORTADA' : `${current} DE ${letters.length}`;
-  document.querySelector('#hint').textContent = current === 0 ? 'Abre el libro. Hay algo bonito esperando.' : current === letters.length ? 'Puedes volver a leerla siempre que quieras.' : 'Una página más, un poquito más cerca.';
+  next.disabled = busy || current === bookPages.length;
+  document.querySelector('#position').textContent = current === 0 ? 'LA PORTADA' : `${current} DE ${bookPages.length}`;
+  document.querySelector('#hint').textContent = current === 0 ? 'Abre el libro. Hay algo bonito esperando.' : current === bookPages.length ? 'Puedes volver a leerla siempre que quieras.' : 'Una página más, un poquito más cerca.';
 }
 function rustle() {
   if (!soundEnabled) return;
@@ -51,7 +60,7 @@ function rustle() {
   } catch { /* La carta sigue funcionando si el navegador no admite audio. */ }
 }
 function turn(direction) {
-  if (busy || current + direction < 0 || current + direction > letters.length) return;
+  if (busy || current + direction < 0 || current + direction > bookPages.length) return;
   busy = true;
   previous.disabled = next.disabled = true;
   rustle();
@@ -67,7 +76,7 @@ function turn(direction) {
       page.classList.remove('turn-in');
       busy = false;
       render();
-      if (focusedInside) (current === letters.length ? previous : next).focus({ preventScroll: true });
+      if (focusedInside) (current === bookPages.length ? previous : next).focus({ preventScroll: true });
     }, reducedMotion ? 0 : 280);
   }, reducedMotion ? 0 : 220);
 }
